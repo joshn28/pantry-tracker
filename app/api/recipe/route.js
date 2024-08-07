@@ -12,12 +12,15 @@ export async function POST(req) {
     messages: [
       {
         role: "user",
-        content: `Suggest a recipe using ${body.inventory
-          .map((obj) => `${obj.quantity} ${obj.item}`)
+        content: `Suggest recipes using ${body.inventory
+          .map((obj) => `${obj.item}`)
           .join(
             ", "
-          )}. Return the recipe as a JSON object with the properties name,
-          instructions and ingredients. Each property should be of type string.`,
+          )}. Return an JSON object of 3 recipes as properties where each recipe
+          is a JSON object with the properties name, instructions and ingredients.
+          The ingredients should include the exact measurements of the items needed
+          for the recipe as a string. Each step in the instructions should be numbered.
+          Each property value should be of type string.`,
       },
     ],
   });
