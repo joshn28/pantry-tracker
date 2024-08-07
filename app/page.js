@@ -175,7 +175,7 @@ export default function Home() {
           newRecipes.push(recipesObj[newRecipe]);
         }
         setRecipes([...newRecipes]);
-        console.log(recipesObj)
+        console.log(recipesObj);
       })
       .catch((err) => {
         console.error("Unable to generate recipes at this time!", err);
@@ -248,6 +248,8 @@ export default function Home() {
       getActions: ({ id }) => {
         const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
 
+        /* eslint-disable */
+
         if (isInEditMode) {
           return [
             <GridActionsCellItem
@@ -291,6 +293,7 @@ export default function Home() {
             color="inherit"
           />,
         ];
+        /* eslint-enable */
       },
     },
   ];
@@ -411,7 +414,12 @@ export default function Home() {
                   variant="outlined"
                   disabled={!(itemName && Number(itemQuantity) > 0)}
                   onClick={() => {
-                    addItem(itemName, Number(itemQuantity), itemDesc, itemPrice);
+                    addItem(
+                      itemName,
+                      Number(itemQuantity),
+                      itemDesc,
+                      itemPrice
+                    );
                     setItemName("");
                     setItemQuantity("");
                     setItemPrice("");
@@ -453,7 +461,7 @@ export default function Home() {
           disableRowSelectionOnClick
           disableColumnFilter
           disableColumnSelector
-          getRowHeight={() => 'auto'}
+          getRowHeight={() => "auto"}
           autosizeOptions={{
             includeOutliers: true,
           }}
